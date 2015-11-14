@@ -19,7 +19,6 @@
   },
   "devDependencies": {
     "angular": "1.2.10",
-    "browserify": "3.33.1",
     "mocha": "1.18.2"
   }
 }

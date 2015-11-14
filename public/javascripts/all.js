@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var angular = require('angular');
 var router = require('./angular-route.1.2.10.js').addNgRoute(angular);
 
@@ -1121,19 +1121,20 @@ var _ = require('underscore');
 exports.computeUINutrientsPer100G = function(nutrients) {
   var computed = {
     calories : 0,
-    omega3 : 0,
-    omega6 : 0,
+    fats: 0,
     carbs : 0
   };
 
   _.each(nutrients, function(nutrient) {
     if (nutrient.tagname === "ENERC_KCAL") {
       computed.calories += nutrient.amountPer100G;
-    } else if (nutrient.description.indexOf('n-3') != -1) {
-      computed.omega3 += nutrient.amountPer100G;
-    } else if (nutrient.description.indexOf('n-6') != -1) {
-      computed.omega6 += nutrient.amountPer100G;
-    } else if (nutrient.tagname === "CHOCDF") {
+    } 
+
+    else if (nutrient.tagname === "FAT") {
+      computed.fats += nutrient.amountPer100G;
+    }
+
+    else if (nutrient.tagname === "CHOCDF") {
       computed.carbs += nutrient.amountPer100G;
     }
   });
@@ -1144,8 +1145,7 @@ exports.computeUINutrientsPer100G = function(nutrients) {
 exports.computeUINutrientsForDay = function(day) {
   var computed = {
     calories : 0,
-    omega3 : 0,
-    omega6 : 0,
+    fats: 0,
     carbs : 0
   };
 
@@ -1369,7 +1369,7 @@ Je=$({restrict:"E",terminal:!0});(Da=Z.jQuery)?(A=Da,t(Da.fn,{scope:Ga.scope,iso
 version:Sd,isDate:La,lowercase:x,uppercase:Ia,callbacks:{counter:0},$$minErr:F,$$csp:Ub});Va=Vc(Z);try{Va("ngLocale")}catch(c){Va("ngLocale",[]).provider("$locale",sd)}Va("ng",["ngLocale"],["$provide",function(a){a.provider({$$sanitizeUri:Cd});a.provider("$compile",jc).directive({a:Xd,input:Mc,textarea:Mc,form:Yd,script:Ee,select:He,style:Je,option:Ie,ngBind:ie,ngBindHtml:ke,ngBindTemplate:je,ngClass:le,ngClassEven:ne,ngClassOdd:me,ngCloak:oe,ngController:pe,ngForm:Zd,ngHide:ye,ngIf:qe,ngInclude:re,
 ngInit:te,ngNonBindable:ue,ngPluralize:ve,ngRepeat:we,ngShow:xe,ngStyle:ze,ngSwitch:Ae,ngSwitchWhen:Be,ngSwitchDefault:Ce,ngOptions:Ge,ngTransclude:De,ngModel:de,ngList:fe,ngChange:ee,required:Nc,ngRequired:Nc,ngValue:he}).directive({ngInclude:se}).directive(Ob).directive(Oc);a.provider({$anchorScroll:dd,$animate:Ud,$browser:fd,$cacheFactory:gd,$controller:jd,$document:kd,$exceptionHandler:ld,$filter:Bc,$interpolate:qd,$interval:rd,$http:md,$httpBackend:od,$location:ud,$log:vd,$parse:yd,$rootScope:Bd,
 $q:zd,$sce:Fd,$sceDelegate:Ed,$sniffer:Gd,$templateCache:hd,$timeout:Hd,$window:Id})}])})(Ca);A(Q).ready(function(){Tc(Q,Zb)})})(window,document);!angular.$$csp()&&angular.element(document).find("head").prepend('<style type="text/css">@charset "UTF-8";[ng\\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\\:form{display:block;}</style>');
-//# sourceMappingURL=angular.min.js.map
+
 
 },{}],9:[function(require,module,exports){
 //! moment.js
@@ -4965,4 +4965,4 @@ $q:zd,$sce:Fd,$sceDelegate:Ed,$sniffer:Gd,$templateCache:hd,$timeout:Hd,$window:
 
 }).call(this);
 
-},{}]},{},[1,2,3,4,5])
+},{}]},{},[1]);
